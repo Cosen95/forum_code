@@ -6,7 +6,7 @@
     "start": "node bin/www",
     "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon bin/www",
     "prd": "cross-env NODE_ENV=production pm2 start bin/www",
-    "jest": "jest --runInBand --forceExit --colors"
+    "jest": "cross-env NODE_ENV=jest jest --runInBand --forceExit --colors"
   },
   "dependencies": {
     "debug": "^4.1.1",
@@ -26,8 +26,10 @@
   "devDependencies": {
     "cross-env": "^6.0.3",
     "jest": "^24.9.0",
+    "mysql2": "^2.1.0",
     "nodemon": "^1.19.1",
     "redis": "^2.8.0",
+    "sequelize": "^5.21.3",
     "supertest": "^4.0.2"
   }
 }
