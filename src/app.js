@@ -10,9 +10,18 @@ const redisStore = require("koa-redis");
 const { REDIS_CONF } = require("./config/db.js");
 const index = require("./routes/index");
 const users = require("./routes/users");
+const errorViewRouter = require("./routes/view/error");
 
 // error handler
-onerror(app);
+let onerrorConf = {};
+if (process.env.NODE_ENV === "production") {
+  // 生产环境redirect error page，开发环境抛出error
+  onerrorConf = {
+    redirect: "/error"
+  };
+}
+
+onerror(app, onerrorConf);
 
 // middlewares
 app.use(
@@ -59,6 +68,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
+app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {
