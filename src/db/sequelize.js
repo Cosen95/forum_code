@@ -3,7 +3,7 @@
  */
 const Sequelize = require("sequelize");
 const { MYSQL_CONF } = require("../config/db.js");
-const { host, user, password, port, database } = MYSQL_CONF;
+const { host, user, password, database } = MYSQL_CONF;
 
 const conf = {
   host,

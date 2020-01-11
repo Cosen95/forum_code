@@ -6,7 +6,9 @@
     "start": "node bin/www",
     "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon bin/www",
     "prd": "cross-env NODE_ENV=production pm2 start bin/www",
-    "jest": "cross-env NODE_ENV=jest jest --runInBand --forceExit --colors"
+    "jest": "cross-env NODE_ENV=jest jest --runInBand --forceExit --colors",
+    "lint": "eslint --ext .js ./src",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "debug": "^4.1.1",
@@ -24,12 +26,25 @@
     "koa-views": "^6.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "babel-eslint": "^10.0.3",
     "cross-env": "^6.0.3",
+    "eslint": "^6.8.0",
+    "husky": "^4.0.6",
     "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
     "mysql2": "^2.1.0",
     "nodemon": "^1.19.1",
+    "precommit": "^1.2.2",
     "redis": "^2.8.0",
     "sequelize": "^5.21.3",
     "supertest": "^4.0.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
