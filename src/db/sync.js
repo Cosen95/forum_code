@@ -2,6 +2,7 @@
  * @description sequelize同步数据库
  */
 const seq = require("./sequelize.js");
+require("./model/index.js");
 
 seq
   .authenticate()
