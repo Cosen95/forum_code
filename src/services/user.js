@@ -4,6 +4,13 @@
 
 const { User } = require("../db/model/index.js");
 const { formatUser } = require("./_format.js");
+/**
+ * 获取用户信息
+ *
+ * @param {*} userName 用户名
+ * @param {*} password 密码
+ * @returns
+ */
 async function getUserInfo(userName, password) {
   // 查询条件
   const whereOpt = {
@@ -26,6 +33,24 @@ async function getUserInfo(userName, password) {
   return formatRes;
 }
 
+/**
+ * 创建用户
+ *
+ * @param {*} { userName, password, gender = 3, nickName }
+ * @returns
+ */
+async function createUser({ userName, password, gender = 3, nickName }) {
+  const result = await User.create({
+    userName,
+    password,
+    nickName: nickName || "",
+    gender
+  });
+
+  return result.dataValues;
+}
+
 module.exports = {
-  getUserInfo
+  getUserInfo,
+  createUser
 };
