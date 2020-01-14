@@ -1,9 +1,12 @@
 /**
  * @description user controller
  */
-const { getUserInfo } = require("../services/user");
+const { getUserInfo, createUser } = require("../services/user");
 const { SuccessModel, ErrorModel } = require("../model/ResModel");
-const { registerUserNameExistInfo } = require("../model/ErrorInfo");
+const {
+  registerUserNameExistInfo,
+  registerFailInfo
+} = require("../model/ErrorInfo");
 /**
  * 用户名是否存在
  *
@@ -20,6 +23,25 @@ async function isExist(userName) {
   }
 }
 
+async function register({ userName, password, gender }) {
+  const userInfo = await getUserInfo(userName);
+  if (userInfo) {
+    // 用户名已存在
+    return ErrorModel(registerFailInfo);
+  }
+  try {
+    await createUser({
+      userName,
+      password,
+      gender
+    });
+    return new SuccessModel();
+  } catch (error) {
+    return new ErrorModel(registerFailInfo);
+  }
+}
+
 module.exports = {
-  isExist
+  isExist,
+  register
 };
