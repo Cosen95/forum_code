@@ -14,6 +14,8 @@ const userApiRouter = require("./routes/api/user.js");
 
 const errorViewRouter = require("./routes/view/error");
 
+const { SESSION_SECRET_KEY } = require("./config/secretKeys");
+
 // error handler
 let onerrorConf = {};
 if (process.env.NODE_ENV === "production") {
@@ -42,7 +44,7 @@ app.use(
 );
 
 // session配置
-app.keys = ["JAck_cooL@1995"];
+app.keys = [SESSION_SECRET_KEY];
 app.use(
   session({
     key: "forum.sid", // cookie name
