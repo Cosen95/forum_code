@@ -11,5 +11,10 @@ module.exports = {
   registerFailInfo: {
     errno: 10002,
     message: "注册失败，请重试"
+  },
+  // json schema 校验失败
+  jsonSchemaFileInfo: {
+    errno: 10009,
+    message: "数据格式校验错误"
   }
 };
