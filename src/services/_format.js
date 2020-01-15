@@ -11,9 +11,11 @@ function _formatUserPicture(obj) {
   if (obj.picture === null) {
     obj.picture = DEFAULT_PICTURE;
   }
+  return obj;
 }
 
 function formatUser(list) {
+  console.log("用户信息格式化", list);
   if (list == null) {
     return list;
   }

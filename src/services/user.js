@@ -25,6 +25,7 @@ async function getUserInfo(userName, password) {
     attributes: ["id", "userName", "nickName", "picture", "city"],
     where: whereOpt
   });
+  console.log("查询用户信息res", result);
   if (!result) {
     return result;
   }
