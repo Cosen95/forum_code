@@ -36,7 +36,7 @@ async function register({ userName, password, gender }) {
   const userInfo = await getUserInfo(userName);
   if (userInfo) {
     // 用户名已存在
-    return ErrorModel(registerFailInfo);
+    return new ErrorModel(registerFailInfo);
   }
   try {
     await createUser({

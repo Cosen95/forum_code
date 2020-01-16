@@ -1,3 +1,6 @@
+/**
+ * @description user model test
+ */
 const { User } = require("../../src/db/model/index");
 
 test("User 模型的各个属性符合预期", () => {
