@@ -31,5 +31,10 @@ module.exports = {
   deleteUserFailInfo: {
     errno: 10010,
     message: "删除用户失败"
+  },
+  // 上传文件过大
+  uploadFileSizeFailInfo: {
+    errno: 10007,
+    message: "上传文件尺寸过大"
   }
 };
