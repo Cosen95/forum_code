@@ -13,7 +13,8 @@ const {
   registerFailInfo,
   loginFailInfo,
   deleteUserFailInfo,
-  changeInfoFailInfo
+  changeInfoFailInfo,
+  changePasswordFailInfo
 } = require("../model/ErrorInfo");
 const doCrypto = require("../utils/crypto");
 /**
@@ -119,10 +120,31 @@ async function changeInfo(ctx, { nickName, city, picture }) {
   return new ErrorModel(changeInfoFailInfo);
 }
 
+async function changePassword(userName, password, newPassword) {
+  const result = await updateUser(
+    {
+      newPassword: doCrypto(newPassword)
+    },
+    {
+      userName,
+      password: doCrypto(password)
+    }
+  );
+
+  if (result) {
+    // 修改密码成功
+    return new SuccessModel();
+  }
+
+  // 修改密码失败
+  return new ErrorModel(changePasswordFailInfo);
+}
+
 module.exports = {
   isExist,
   register,
   login,
   deleteCurrentUser,
-  changeInfo
+  changeInfo,
+  changePassword
 };

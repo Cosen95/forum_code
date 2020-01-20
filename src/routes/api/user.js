@@ -4,7 +4,8 @@ const {
   register,
   login,
   deleteCurrentUser,
-  changeInfo
+  changeInfo,
+  changePassword
 } = require("../../controller/user");
 const userValidate = require("../../validator/user");
 const { genValidator } = require("../../middlewares/validator");
@@ -39,6 +40,7 @@ router.post("/login", async ctx => {
   ctx.body = await login(ctx, userName, password);
 });
 
+// 删除
 router.post("/delete", loginCheck, async ctx => {
   const { userName } = ctx.session.userInfo;
   if (process.env.NODE_ENV !== "production") {
@@ -48,6 +50,7 @@ router.post("/delete", loginCheck, async ctx => {
   }
 });
 
+// 修改用户信息
 router.patch(
   "/changeInfo",
   loginCheck,
@@ -55,6 +58,18 @@ router.patch(
   async ctx => {
     const { nickName, city, picture } = ctx.request.body;
     ctx.body = await changeInfo(ctx, { nickName, city, picture });
+  }
+);
+
+// 修改密码
+router.patch(
+  "/changePassword",
+  loginCheck,
+  genValidator(userValidate),
+  async ctx => {
+    const { password, newPassword } = ctx.request.body;
+    const { userName } = ctx.session.userInfo;
+    ctx.body = await changePassword(userName, password, newPassword);
   }
 );
 
