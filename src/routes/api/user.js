@@ -5,7 +5,8 @@ const {
   login,
   deleteCurrentUser,
   changeInfo,
-  changePassword
+  changePassword,
+  logout
 } = require("../../controller/user");
 const userValidate = require("../../validator/user");
 const { genValidator } = require("../../middlewares/validator");
@@ -72,5 +73,9 @@ router.patch(
     ctx.body = await changePassword(userName, password, newPassword);
   }
 );
+
+router.post("/logout", loginCheck, async ctx => {
+  ctx.body = await logout(ctx);
+});
 
 module.exports = router;

@@ -95,6 +95,13 @@ async function deleteCurrentUser(userName) {
   return new ErrorModel(deleteUserFailInfo);
 }
 
+/**
+ * 修改用户信息
+ *
+ * @param {*} ctx
+ * @param {*} { nickName, city, picture }
+ * @returns
+ */
 async function changeInfo(ctx, { nickName, city, picture }) {
   const { userName } = ctx.session.userInfo;
   if (!nickName) {
@@ -120,6 +127,14 @@ async function changeInfo(ctx, { nickName, city, picture }) {
   return new ErrorModel(changeInfoFailInfo);
 }
 
+/**
+ * 修改用户密码
+ *
+ * @param {*} userName
+ * @param {*} password
+ * @param {*} newPassword
+ * @returns
+ */
 async function changePassword(userName, password, newPassword) {
   const result = await updateUser(
     {
@@ -140,11 +155,23 @@ async function changePassword(userName, password, newPassword) {
   return new ErrorModel(changePasswordFailInfo);
 }
 
+/**
+ * 注销
+ *
+ * @param {*} ctx
+ * @returns
+ */
+async function logout(ctx) {
+  delete ctx.session.userInfo; // 清除session中用户信息
+  return new SuccessModel();
+}
+
 module.exports = {
   isExist,
   register,
   login,
   deleteCurrentUser,
   changeInfo,
-  changePassword
+  changePassword,
+  logout
 };
