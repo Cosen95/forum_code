@@ -36,5 +36,10 @@ module.exports = {
   uploadFileSizeFailInfo: {
     errno: 10007,
     message: "上传文件尺寸过大"
+  },
+  // 修改基本信息失败
+  changeInfoFailInfo: {
+    errno: 10008,
+    message: "修改基本信息失败"
   }
 };

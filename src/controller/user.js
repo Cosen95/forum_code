@@ -1,13 +1,19 @@
 /**
  * @description user controller
  */
-const { getUserInfo, createUser, deleteUser } = require("../services/user");
+const {
+  getUserInfo,
+  createUser,
+  deleteUser,
+  updateUser
+} = require("../services/user");
 const { SuccessModel, ErrorModel } = require("../model/ResModel");
 const {
   registerUserNameExistInfo,
   registerFailInfo,
   loginFailInfo,
-  deleteUserFailInfo
+  deleteUserFailInfo,
+  changeInfoFailInfo
 } = require("../model/ErrorInfo");
 const doCrypto = require("../utils/crypto");
 /**
@@ -88,9 +94,35 @@ async function deleteCurrentUser(userName) {
   return new ErrorModel(deleteUserFailInfo);
 }
 
+async function changeInfo(ctx, { nickName, city, picture }) {
+  const { userName } = ctx.session.userInfo;
+  if (!nickName) {
+    // 昵称未填写，用用户名重写
+    nickName = userName;
+  }
+
+  const result = await updateUser(
+    { newNickName: nickName, newPicture: picture, newCity: city },
+    { userName }
+  );
+  if (result) {
+    // 更新成功需更新session中的用户信息
+    Object.assign(ctx.session.userInfo, {
+      nickName,
+      city,
+      picture
+    });
+    return new SuccessModel();
+  }
+
+  // 更新失败
+  return new ErrorModel(changeInfoFailInfo);
+}
+
 module.exports = {
   isExist,
   register,
   login,
-  deleteCurrentUser
+  deleteCurrentUser,
+  changeInfo
 };

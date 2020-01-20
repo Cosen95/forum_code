@@ -3,7 +3,8 @@ const {
   isExist,
   register,
   login,
-  deleteCurrentUser
+  deleteCurrentUser,
+  changeInfo
 } = require("../../controller/user");
 const userValidate = require("../../validator/user");
 const { genValidator } = require("../../middlewares/validator");
@@ -46,5 +47,15 @@ router.post("/delete", loginCheck, async ctx => {
     ctx.body = await deleteCurrentUser(userName);
   }
 });
+
+router.patch(
+  "/changeInfo",
+  loginCheck,
+  genValidator(userValidate),
+  async ctx => {
+    const { nickName, city, picture } = ctx.request.body;
+    ctx.body = await changeInfo(ctx, { nickName, city, picture });
+  }
+);
 
 module.exports = router;
