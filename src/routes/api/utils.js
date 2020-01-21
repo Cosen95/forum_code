@@ -9,6 +9,10 @@ router.prefix("/api/utils");
 // 上传图片
 router.post("/upload", loginCheck, koaForm(), async ctx => {
   const file = ctx.req.files["file"];
+  if (!file) {
+    // 文件不存在直接return
+    return;
+  }
   const { size, path, name, type } = file;
   ctx.body = await saveFile({
     name,
