@@ -24,7 +24,8 @@
     "koa-redis": "^4.0.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
-    "koa-views": "^6.2.0"
+    "koa-views": "^6.2.0",
+    "xss": "^1.0.6"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.4",
