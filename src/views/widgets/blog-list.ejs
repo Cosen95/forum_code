@@ -1,0 +1,27 @@
+<% blogList.forEach(blog => { %>
+<div class="item-wrapper">
+  <img class="user-picture" src="<%= blog.user.picture%>" />
+  <div class="content clear-fix">
+    <% if (blog.image) { %>
+    <a href="<%= blog.image%>" target="_blank">
+      <img class="blog-img" src="<%= blog.image%>" />
+    </a>
+    <% } %>
+    <a href="/profile/<%= blog.user.userName%>">
+      <%= blog.user.nickName%> </a
+    >:
+    <span><%- blog.contentFormat%></span>
+  </div>
+  <div class="info">
+    <span><%= blog.createdAtFormat%></span>
+    &nbsp;
+  </div>
+</div>
+<% }) %>
+
+<script>
+  $(function() {
+    // 设置焦点
+    // 回复
+  });
+</script>
