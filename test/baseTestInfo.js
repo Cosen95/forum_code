@@ -1,4 +1,5 @@
 module.exports = {
   COOKIE:
-    "forum.sid=hvTp1w3uf8gQEGTDXzBmKsDg8qlXb7hR; forum.sid.sig=RqUV-jQOigLUCsvE8ETB1UyECM4"
+    "forum.sid=Y3N3VNGulkyCoesr6EWCgpMyxsZ2fi4w; forum.sid.sig=5OIsklVYXmc6d2JiJ7aoR9LRNzs",
+  USER_NAME: "fs"
 };
