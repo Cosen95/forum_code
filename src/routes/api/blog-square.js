@@ -11,6 +11,7 @@ router.get("/loadMore/:pageIndex", loginCheck, async ctx => {
   const result = await getSquareBlogList(pageIndex);
   // 渲染为html字符串
   result.data.blogListTpl = getBlogListStr(result.data.blogList);
+  console.log("blogListTpl测试111111111", result.data.blogListTpl);
 
   ctx.body = result;
 });

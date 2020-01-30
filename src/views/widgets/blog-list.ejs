@@ -7,10 +7,8 @@
       <img class="blog-img" src="<%= blog.image%>" />
     </a>
     <% } %>
-    <a href="/profile/<%= blog.user.userName%>">
-      <%= blog.user.nickName%> </a
-    >:
-    <span><%- blog.contentFormat%></span>
+    <a href="/profile/<%= blog.user.userName%>"> <%= blog.user.nickName%> </a>:
+    <span><%- blog.content%></span>
   </div>
   <div class="info">
     <span><%= blog.createdAtFormat%></span>
