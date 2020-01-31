@@ -7,7 +7,7 @@ const { getProfileBlogList } = require("../../controller/blog-profile");
 const { getSquareBlogList } = require("../../controller/blog-square");
 
 const { isExist } = require("../../controller/user");
-
+const { getFans } = require("../../controller/user-relation");
 // 首页
 router.get("/", loginRedirect, async ctx => {
   await ctx.render("index", {});
@@ -41,6 +41,10 @@ router.get("/profile/:userName", loginRedirect, async ctx => {
   console.log("当前用户博客数据", result);
   const { isEmpty, blogList, pageSize, pageIndex, count } = result.data;
   console.log("博客列表", blogList);
+
+  // 获取粉丝
+  const fansResult = await getFans(curUserInfo.id);
+  const { count: fansCount, fansList } = fansResult.data;
   await ctx.render("profile", {
     blogData: {
       isEmpty,
@@ -51,7 +55,11 @@ router.get("/profile/:userName", loginRedirect, async ctx => {
     },
     userData: {
       userInfo: curUserInfo,
-      isMe
+      isMe,
+      fansData: {
+        count: fansCount,
+        list: fansList
+      }
     }
   });
 });

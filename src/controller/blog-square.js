@@ -1,3 +1,6 @@
+/**
+ * 广场页 controller
+ */
 const { PAGE_SIZE } = require("../config/constant");
 const { SuccessModel } = require("../model/ResModel");
 const { getSquareCacheList } = require("../cache/blog");
