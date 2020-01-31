@@ -36,6 +36,19 @@
       }
     }
     // 关注此人
+    $btnFollow.click(function () {
+        ajax.post('/api/profile/follow', {
+            userId: curUserId
+        }, function (err) {
+            if (err) {
+                alert(err)
+                return
+            }
+            // 关注成功
+            $btnFollow.hide()
+            $btnUnFollow.show()
+        })
+    })
     // 取消关注
   });
 </script>

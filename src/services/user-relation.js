@@ -36,6 +36,15 @@ async function getUsersByFollower(followerId) {
   };
 }
 
+async function addFollower(userId, followerId) {
+  const result = await UserRelation.create({
+    userId,
+    followerId
+  });
+  return result.dataValues;
+}
+
 module.exports = {
-  getUsersByFollower
+  getUsersByFollower,
+  addFollower
 };
