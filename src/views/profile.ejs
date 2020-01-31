@@ -33,7 +33,7 @@
       <!-- 个人信息 -->
       <div class="right-item">
         <%- include('widgets/user-info', { userInfo: userData.userInfo, isMe:
-        userData.isMe, });%>
+        userData.isMe, amIFollowed: userData.amIFollowed });%>
       </div>
 
       <!-- 粉丝 -->

@@ -45,6 +45,13 @@ router.get("/profile/:userName", loginRedirect, async ctx => {
   // 获取粉丝
   const fansResult = await getFans(curUserInfo.id);
   const { count: fansCount, fansList } = fansResult.data;
+
+  // 判断关注状态
+  const amIFollowed = fansList.some(item => {
+    return item.userName === hasLoginUserName;
+  });
+  console.log("关注状态", amIFollowed);
+
   await ctx.render("profile", {
     blogData: {
       isEmpty,
@@ -59,7 +66,8 @@ router.get("/profile/:userName", loginRedirect, async ctx => {
       fansData: {
         count: fansCount,
         list: fansList
-      }
+      },
+      amIFollowed
     }
   });
 });
