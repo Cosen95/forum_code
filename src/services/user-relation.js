@@ -44,7 +44,18 @@ async function addFollower(userId, followerId) {
   return result.dataValues;
 }
 
+async function deleteFollower(userId, followerId) {
+  const result = await UserRelation.destroy({
+    where: {
+      userId,
+      followerId
+    }
+  });
+  return result > 0;
+}
+
 module.exports = {
   getUsersByFollower,
-  addFollower
+  addFollower,
+  deleteFollower
 };
