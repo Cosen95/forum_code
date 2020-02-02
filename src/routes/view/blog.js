@@ -5,7 +5,7 @@ const router = require("koa-router")();
 const { loginRedirect } = require("../../middlewares/loginChecks");
 const { getProfileBlogList } = require("../../controller/blog-profile");
 const { getSquareBlogList } = require("../../controller/blog-square");
-
+const { getHomeBlogList } = require("../../controller/blog-home");
 const { isExist } = require("../../controller/user");
 const { getFans, getFollowers } = require("../../controller/user-relation");
 // 首页
@@ -14,7 +14,8 @@ router.get("/", loginRedirect, async ctx => {
   const { id: userId } = userInfo;
 
   // 获取第一页数据
-
+  const result = await getHomeBlogList(userId);
+  const { isEmpty, blogList, pageSize, pageIndex, count } = result.data;
   // 获取粉丝
   const fansResult = await getFans(userId);
   const { count: fansCount, fansList } = fansResult.data;
@@ -33,6 +34,13 @@ router.get("/", loginRedirect, async ctx => {
         count: followersCount,
         list: followersList
       }
+    },
+    blogData: {
+      isEmpty,
+      blogList,
+      pageSize,
+      pageIndex,
+      count
     }
   });
 });
