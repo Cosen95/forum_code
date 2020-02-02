@@ -10,7 +10,31 @@ const { isExist } = require("../../controller/user");
 const { getFans, getFollowers } = require("../../controller/user-relation");
 // 首页
 router.get("/", loginRedirect, async ctx => {
-  await ctx.render("index", {});
+  const userInfo = ctx.session.userInfo;
+  const { id: userId } = userInfo;
+
+  // 获取第一页数据
+
+  // 获取粉丝
+  const fansResult = await getFans(userId);
+  const { count: fansCount, fansList } = fansResult.data;
+
+  // 获取关注人列表
+  const followersResult = await getFollowers(userId);
+  const { count: followersCount, followersList } = followersResult.data;
+  await ctx.render("index", {
+    userData: {
+      userInfo,
+      fansData: {
+        count: fansCount,
+        list: fansList
+      },
+      followersData: {
+        count: followersCount,
+        list: followersList
+      }
+    }
+  });
 });
 // 个人主页
 router.get("/profile", loginRedirect, async ctx => {
