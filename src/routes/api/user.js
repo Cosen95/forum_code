@@ -8,6 +8,7 @@ const {
   changePassword,
   logout
 } = require("../../controller/user");
+const { getFollowers } = require("../../controller/user-relation");
 const userValidate = require("../../validator/user");
 const { genValidator } = require("../../middlewares/validator");
 const { loginCheck } = require("../../middlewares/loginChecks");
@@ -74,8 +75,20 @@ router.patch(
   }
 );
 
+// 注销
 router.post("/logout", loginCheck, async ctx => {
   ctx.body = await logout(ctx);
 });
 
+// 获取@列表，即关注人列表
+router.get("/getAtList", loginCheck, async ctx => {
+  const { id: userId } = ctx.session.userInfo;
+  const result = await getFollowers(userId);
+  const { followersList } = result.data;
+  const list = followersList.map(user => {
+    return `${user.nickName}`;
+  });
+
+  ctx.body = list;
+});
 module.exports = router;
