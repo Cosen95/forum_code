@@ -1,11 +1,11 @@
 module.exports = {
   curID: 1,
   COOKIE:
-    "forum.sid=YZ-qq7CxKXallN-Pjtusvsq5TfalXd_M; forum.sid.sig=ELEFQydFR7l3kobwInkKjWz0Usk",
+    "forum.sid=BmGWOa0FH5Q2gMZpKMxajmJT3aQefvzf; forum.sid.sig=ntYeNmIfY2YE-N-DUO7mQPDlv6U",
   USER_NAME: "forest",
 
   otherId: 2,
   OTHER_COOKIE:
-    "forum.sid=iWywVf-liX6tnKayWdK_co35PN3hoqj1; forum.sid.sig=ToSQEAhvXEDFo9bsIT7UdWCkoUg",
+    "forum.sid=FeckEmD8FoHhJ0UcE5GIhTQhRn63P-NV; forum.sid.sig=D_84hYu216JHgT6_vInNIVO2ccA",
   OTHER_USER_NAME: "zhichen"
 };

@@ -49,6 +49,16 @@ test("获取森林的关注人，应该有之晨", async () => {
   expect(hasFollowed).toBe(true);
 });
 
+test("获取森林的@列表，应该有之晨", async () => {
+  const res = await server.get("/api/user/getAtList").set("cookie", COOKIE);
+  const atList = res.body;
+  const hasAt = atList.some(item => {
+    return item.indexOf(`- ${OTHER_USER_NAME}`) > 0;
+  });
+
+  expect(hasAt).toBe(true);
+});
+
 test("森林取消关注之晨，应该可以成功", async () => {
   const res = await server
     .post("/api/profile/unFollow")
