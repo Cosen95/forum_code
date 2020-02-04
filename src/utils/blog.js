@@ -7,7 +7,7 @@ const BLOG_LIST_TPL = fs
   .readFileSync(path.join(__dirname, "..", "views", "widgets", "blog-list.ejs"))
   .toString();
 
-function getBlogListStr(blogList = [], canReply = false) {
+function getBlogListStr(blogList = [], canReply = true) {
   return ejs.render(BLOG_LIST_TPL, {
     blogList,
     canReply
