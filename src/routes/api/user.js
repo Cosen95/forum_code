@@ -86,7 +86,7 @@ router.get("/getAtList", loginCheck, async ctx => {
   const result = await getFollowers(userId);
   const { followersList } = result.data;
   const list = followersList.map(user => {
-    return `${user.nickName}`;
+    return `${user.nickName} - ${user.userName}`;
   });
 
   ctx.body = list;
