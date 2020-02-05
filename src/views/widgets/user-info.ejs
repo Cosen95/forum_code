@@ -6,7 +6,7 @@
 <% if (isMe) { %> <%# 是当前登录用户%>
 <p class="bold margin-top-10">
   <a href="/at-me">
-    @提到我的 (0)
+    @提到我的 (<%= locals.atCount %>)
   </a>
 </p>
 <% } else { %> <%# 不是当前登录用户%>

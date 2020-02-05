@@ -8,6 +8,7 @@ const { getSquareBlogList } = require("../../controller/blog-square");
 const { getHomeBlogList } = require("../../controller/blog-home");
 const { isExist } = require("../../controller/user");
 const { getFans, getFollowers } = require("../../controller/user-relation");
+const { getAtMeCount } = require("../../controller/blog-at");
 // 首页
 router.get("/", loginRedirect, async ctx => {
   const userInfo = ctx.session.userInfo;
@@ -23,6 +24,10 @@ router.get("/", loginRedirect, async ctx => {
   // 获取关注人列表
   const followersResult = await getFollowers(userId);
   const { count: followersCount, followersList } = followersResult.data;
+
+  // 获取@数量
+  const atCountResult = await getAtMeCount(userId);
+  const { count: atCount } = atCountResult.data;
   await ctx.render("index", {
     userData: {
       userInfo,
@@ -33,7 +38,8 @@ router.get("/", loginRedirect, async ctx => {
       followersData: {
         count: followersCount,
         list: followersList
-      }
+      },
+      atCount
     },
     blogData: {
       isEmpty,
@@ -86,6 +92,10 @@ router.get("/profile/:userName", loginRedirect, async ctx => {
   const amIFollowed = fansList.some(item => {
     return item.userName === hasLoginUserName;
   });
+
+  // 获取@数量
+  const atCountResult = await getAtMeCount(hasLoginUserInfo.id);
+  const { count: atCount } = atCountResult.data;
   console.log("关注状态", amIFollowed);
 
   await ctx.render("profile", {
@@ -107,7 +117,8 @@ router.get("/profile/:userName", loginRedirect, async ctx => {
         count: followersCount,
         list: followersList
       },
-      amIFollowed
+      amIFollowed,
+      atCount
     }
   });
 });
