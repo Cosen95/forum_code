@@ -1,3 +1,6 @@
+/**
+ * @description @关系数据模型
+ */
 const seq = require("../sequelize.js");
 const { INTEGER, BOOLEAN } = require("../types.js");
 
