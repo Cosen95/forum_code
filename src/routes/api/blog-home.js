@@ -5,6 +5,7 @@ const { genValidator } = require("../../middlewares/validator");
 const blogValidate = require("../../validator/blog");
 const { getHomeBlogList } = require("../../controller/blog-home");
 const { getBlogListStr } = require("../../utils/blog");
+
 router.prefix("/api/blog");
 
 // 创建微博
