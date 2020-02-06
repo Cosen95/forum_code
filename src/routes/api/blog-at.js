@@ -13,6 +13,8 @@ router.get("/loadMore/:pageIndex", loginCheck, async ctx => {
   const result = await getAtMeBlogList(userId, pageIndex);
   // 渲染模板
   result.data.blogListTpl = getBlogListStr(result.data.blogList);
+
+  ctx.body = result;
 });
 
 module.exports = router;
