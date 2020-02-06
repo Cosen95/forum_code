@@ -8,7 +8,11 @@ const { getSquareBlogList } = require("../../controller/blog-square");
 const { getHomeBlogList } = require("../../controller/blog-home");
 const { isExist } = require("../../controller/user");
 const { getFans, getFollowers } = require("../../controller/user-relation");
-const { getAtMeCount, getAtMeBlogList } = require("../../controller/blog-at");
+const {
+  getAtMeCount,
+  getAtMeBlogList,
+  markAsRead
+} = require("../../controller/blog-at");
 // 首页
 router.get("/", loginRedirect, async ctx => {
   const userInfo = ctx.session.userInfo;
@@ -162,6 +166,11 @@ router.get("/at-me", loginRedirect, async ctx => {
       count
     }
   });
+
+  // 页面渲染完成，将未读消息标记为已读
+  if (atCount > 0) {
+    await markAsRead(userId);
+  }
 });
 
 module.exports = router;

@@ -73,8 +73,39 @@ async function getAtUserBlogList({ userId, pageIndex, pageSize = 10 }) {
   };
 }
 
+/**
+ * 更新@用户的微博列表的已读状态
+ *
+ * @param {*} { newIsRead }
+ * @param {*} { userId, isRead }
+ * @returns
+ */
+async function updateAtRelation({ newIsRead }, { userId, isRead }) {
+  // 拼接更新内容
+  const updateData = {};
+  if (newIsRead) {
+    updateData.isRead = newIsRead;
+  }
+
+  // 拼接查询条件
+  const whereData = {};
+  if (userId) {
+    whereData.userId = userId;
+  }
+  if (isRead) {
+    whereData.isRead = isRead;
+  }
+
+  // 更新操作
+  const result = await AtRelation.update(updateData, {
+    where: whereData
+  });
+  return result[0] > 0;
+}
+
 module.exports = {
   createAtRelation,
   getAtRelationCount,
-  getAtUserBlogList
+  getAtUserBlogList,
+  updateAtRelation
 };
