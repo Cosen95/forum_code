@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node bin/www",
     "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon --inspect=9229 bin/www",
-    "prd": "cross-env NODE_ENV=production pm2 start bin/www",
+    "prd": "cross-env NODE_ENV=production pm2 start pm2.conf.json",
     "jest": "cross-env NODE_ENV=jest jest --runInBand --forceExit --colors",
     "lint": "eslint --ext .js ./src"
   },

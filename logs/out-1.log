@@ -1,0 +1,24 @@
+2020-02-09 18:22:51:   <-- GET /javascripts/my-ajax.js
+2020-02-09 18:22:51:   --> GET /javascripts/my-ajax.js 200 29ms 2.05kb
+2020-02-09 18:22:58:   <-- GET /javascripts/my-ajax.js
+2020-02-09 18:22:58:   <-- GET /javascripts/jquery.atwho.js
+2020-02-09 18:22:58:   --> GET /javascripts/my-ajax.js 200 14ms 2.05kb
+2020-02-09 18:22:58:   --> GET /javascripts/jquery.atwho.js 200 12ms 39.29kb
+2020-02-09 18:22:58:   <-- GET /1580907792553.0%20(4).jpeg
+2020-02-09 18:22:58:   --> GET /1580907792553.0%20(4).jpeg 200 6ms 87.31kb
+2020-02-09 18:22:58:   <-- GET /javascripts/query-object.js
+2020-02-09 18:22:58:   --> GET /javascripts/query-object.js 200 2ms 8.16kb
+2020-02-09 18:22:58:   <-- GET /xxx.png
+2020-02-09 18:22:58: GET /xxx.png - 15ms
+2020-02-09 18:22:58:   --> GET /xxx.png 200 27ms 2.68kb
+2020-02-09 18:22:58:   <-- GET /api/user/getAtList
+2020-02-09 18:22:59: Executing (default): SELECT count(`userRelation`.`id`) AS `count` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 1 AND `userRelation`.`followerId` != 1;
+2020-02-09 18:22:59: Executing (default): SELECT `userRelation`.`id`, `userRelation`.`userId`, `userRelation`.`followerId`, `userRelation`.`createdAt`, `userRelation`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 1 AND `userRelation`.`followerId` != 1 ORDER BY `userRelation`.`id` DESC;
+2020-02-09 18:22:59: GET /api/user/getAtList - 78ms
+2020-02-09 18:22:59:   --> GET /api/user/getAtList 200 81ms 2b
+2020-02-09 18:22:59:   <-- GET /favicon.ico
+2020-02-09 18:22:59: GET /favicon.ico - 2ms
+2020-02-09 18:22:59:   --> GET /favicon.ico 200 4ms 2.68kb
+2020-02-09 18:23:27:   <-- GET /xxx.png
+2020-02-09 18:23:27: GET /xxx.png - 9ms
+2020-02-09 18:23:27:   --> GET /xxx.png 200 26ms 2.68kb

@@ -1,0 +1,16 @@
+2020-02-09 18:22:51:   <-- GET /javascripts/query-object.js
+2020-02-09 18:22:51:   --> GET /javascripts/query-object.js 200 42ms 8.16kb
+2020-02-09 18:22:52:   <-- GET /favicon.ico
+2020-02-09 18:22:52: GET /favicon.ico - 13ms
+2020-02-09 18:22:52:   --> GET /favicon.ico 200 19ms 2.68kb
+2020-02-09 18:22:58:   <-- GET /css/right.css
+2020-02-09 18:22:58:   --> GET /css/right.css 200 11ms 502b
+2020-02-09 18:23:27:   <-- GET /square
+2020-02-09 18:23:27: Executing (default): SELECT count(`blog`.`id`) AS `count` FROM `blogs` AS `blog` INNER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id`;
+2020-02-09 18:23:27: Executing (default): SELECT `blog`.`id`, `blog`.`userId`, `blog`.`content`, `blog`.`image`, `blog`.`createdAt`, `blog`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture` FROM `blogs` AS `blog` INNER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` ORDER BY `blog`.`id` DESC LIMIT 0, 5;
+2020-02-09 18:23:27: GET /square - 107ms
+2020-02-09 18:23:27:   --> GET /square 200 125ms 6.85kb
+2020-02-09 18:23:27:   <-- GET /css/main.css
+2020-02-09 18:23:27:   <-- GET /javascripts/my-ajax.js
+2020-02-09 18:23:27:   --> GET /css/main.css 200 13ms 623b
+2020-02-09 18:23:27:   --> GET /javascripts/my-ajax.js 200 16ms 2.05kb

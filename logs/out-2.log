@@ -1,0 +1,95 @@
+2020-02-09 18:22:58:   <-- POST /api/user/login
+2020-02-09 18:22:58: Executing (default): SELECT `id`, `userName`, `nickName`, `picture`, `city` FROM `users` AS `user` WHERE `user`.`userName` = 'forest' AND `user`.`password` = '6c8abda7f36b6be552184cbb4d5e0b50';
+2020-02-09 18:22:58: 查询用户信息res user {
+  dataValues: {
+    id: 1,
+    userName: 'forest',
+    nickName: '森林',
+    picture: '/1580907792553.0 (4).jpeg',
+    city: '上海'
+  },
+  _previousDataValues: {
+    id: 1,
+    userName: 'forest',
+    nickName: '森林',
+    picture: '/1580907792553.0 (4).jpeg',
+    city: '上海'
+  },
+  _changed: {},
+  _modelOptions: {
+    timestamps: true,
+    validate: {},
+    freezeTableName: false,
+    underscored: false,
+    paranoid: false,
+    rejectOnEmpty: false,
+    whereCollection: {
+      userName: 'forest',
+      password: '6c8abda7f36b6be552184cbb4d5e0b50'
+    },
+    schema: null,
+    schemaDelimiter: '',
+    defaultScope: {},
+    scopes: {},
+    indexes: [],
+    name: { plural: 'users', singular: 'user' },
+    omitNull: false,
+    sequelize: Sequelize {
+      options: [Object],
+      config: [Object],
+      dialect: [MysqlDialect],
+      queryInterface: [QueryInterface],
+      models: [Object],
+      modelManager: [ModelManager],
+      connectionManager: [ConnectionManager],
+      importCache: {}
+    },
+    hooks: {}
+  },
+  _options: {
+    isNewRecord: false,
+    _schema: null,
+    _schemaDelimiter: '',
+    raw: true,
+    attributes: [ 'id', 'userName', 'nickName', 'picture', 'city' ]
+  },
+  isNewRecord: false
+}
+2020-02-09 18:22:58: 用户信息 {
+  id: 1,
+  userName: 'forest',
+  nickName: '森林',
+  picture: '/1580907792553.0 (4).jpeg',
+  city: '上海'
+}
+2020-02-09 18:22:58: POST /api/user/login - 300ms
+2020-02-09 18:22:58:   --> POST /api/user/login 200 318ms 21b
+2020-02-09 18:22:58:   <-- GET /
+2020-02-09 18:22:58: Executing (default): SELECT count(`blog`.`id`) AS `count` FROM `blogs` AS `blog` LEFT OUTER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` INNER JOIN `userRelations` AS `userRelation` ON `blog`.`userId` = `userRelation`.`followerId` AND `userRelation`.`userId` = 1;
+2020-02-09 18:22:58: Executing (default): SELECT `blog`.`id`, `blog`.`userId`, `blog`.`content`, `blog`.`image`, `blog`.`createdAt`, `blog`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture`, `userRelation`.`id` AS `userRelation.id`, `userRelation`.`userId` AS `userRelation.userId`, `userRelation`.`followerId` AS `userRelation.followerId` FROM `blogs` AS `blog` LEFT OUTER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` INNER JOIN `userRelations` AS `userRelation` ON `blog`.`userId` = `userRelation`.`followerId` AND `userRelation`.`userId` = 1 ORDER BY `blog`.`id` DESC LIMIT 0, 5;
+2020-02-09 18:22:58: Executing (default): SELECT count(`user`.`id`) AS `count` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`userId` AND `userRelations`.`followerId` = 1 AND `userRelations`.`userId` != 1;
+2020-02-09 18:22:58: Executing (default): SELECT `user`.`id`, `user`.`userName`, `user`.`nickName`, `user`.`picture`, `userRelations`.`id` AS `userRelations.id`, `userRelations`.`userId` AS `userRelations.userId`, `userRelations`.`followerId` AS `userRelations.followerId`, `userRelations`.`createdAt` AS `userRelations.createdAt`, `userRelations`.`updatedAt` AS `userRelations.updatedAt` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`userId` AND `userRelations`.`followerId` = 1 AND `userRelations`.`userId` != 1 ORDER BY `user`.`id` DESC;
+2020-02-09 18:22:58: Executing (default): SELECT count(`userRelation`.`id`) AS `count` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 1 AND `userRelation`.`followerId` != 1;
+2020-02-09 18:22:58: Executing (default): SELECT `userRelation`.`id`, `userRelation`.`userId`, `userRelation`.`followerId`, `userRelation`.`createdAt`, `userRelation`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 1 AND `userRelation`.`followerId` != 1 ORDER BY `userRelation`.`id` DESC;
+2020-02-09 18:22:58: Executing (default): SELECT count(*) AS `count` FROM `atRelations` AS `atRelation` WHERE `atRelation`.`userId` = 1 AND `atRelation`.`isRead` = false;
+2020-02-09 18:22:58: Executing (default): SELECT `id`, `userId`, `blogId`, `isRead`, `createdAt`, `updatedAt` FROM `atRelations` AS `atRelation` WHERE `atRelation`.`userId` = 1 AND `atRelation`.`isRead` = false;
+2020-02-09 18:22:58: GET / - 76ms
+2020-02-09 18:22:58:   --> GET / 200 85ms 12.35kb
+2020-02-09 18:22:58:   <-- GET /css/main.css
+2020-02-09 18:22:58:   <-- GET /css/jquery.atwho.css
+2020-02-09 18:22:58:   --> GET /css/main.css 200 10ms 623b
+2020-02-09 18:22:58:   --> GET /css/jquery.atwho.css 200 11ms 1.2kb
+2020-02-09 18:22:58:   <-- GET /javascripts/jquery.caret.js
+2020-02-09 18:22:58:   --> GET /javascripts/jquery.caret.js 200 9ms 13.1kb
+2020-02-09 18:23:27:   <-- GET /css/list.css
+2020-02-09 18:23:27:   <-- GET /1580907792553.0%20(4).jpeg
+2020-02-09 18:23:27:   --> GET /css/list.css 200 14ms 516b
+2020-02-09 18:23:27:   --> GET /1580907792553.0%20(4).jpeg 200 22ms 87.31kb
+2020-02-09 18:23:27:   <-- GET /javascripts/query-object.js
+2020-02-09 18:23:27:   --> GET /javascripts/query-object.js 200 2ms 8.16kb
+2020-02-09 18:23:28:   <-- GET /xxx.png
+2020-02-09 18:23:28: GET /xxx.png - 3ms
+2020-02-09 18:23:28:   --> GET /xxx.png 200 4ms 2.68kb
+2020-02-09 18:23:28:   <-- GET /favicon.ico
+2020-02-09 18:23:28: GET /favicon.ico - 1ms
+2020-02-09 18:23:28:   --> GET /favicon.ico 200 3ms 2.68kb
